@@ -2,43 +2,43 @@ import {
   View,
   Image,
   StyleSheet,
-  Platform,
   TouchableOpacity,
-  StatusBar,
+  Button,
 } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { profile } from "../data";
+import { useEffect, useState } from "react";
+import { getCurrentTime } from "../utils/utils";
+import { useRouter } from "expo-router";
 
-export default function HomeScreen() {
+export default function ProfileScreen() {
+  const [currentTime, setCurrentTime] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    setCurrentTime(getCurrentTime());
+  }, []);
+
   return (
     <SafeAreaView>
       <ThemedView style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="purple" />
-        <View style={styles.circleContainer}>
-          <Image
-            source={require("@/assets/images/partial-react-logo.png")}
-            style={styles.reactLogo}
-          />
+        <ThemedView style={styles.edit}>
+          <Button title="edit" color="#8B8B8B" onPress={() => {}} />
+        </ThemedView>
+        <View style={styles.imageContainer}>
+          <Image source={profile.image} style={styles.image} />
         </View>
-
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Erin Chong</ThemedText>
+          <ThemedText type="title">{profile.name}</ThemedText>
           <ThemedView style={styles.stepContainer}>
             <ThemedView style={styles.statusCircle}></ThemedView>
-            <ThemedText type="subtitle">9:41 pm PST</ThemedText>
+            <ThemedText type="subtitle">
+              {currentTime} {profile.timezone}
+            </ThemedText>
           </ThemedView>
-          <ThemedText type="yourTimezone">10:41 pm MST</ThemedText>
-          <ThemedText type="bodyText">Available Today 5pm-11pm</ThemedText>
-          <ThemedText type="bodyText">last called 1 year ago</ThemedText>
-          <TouchableOpacity>
-            <ThemedView style={styles.phoneCircle}>
-              <Image
-                source={require("@/assets/images/phone.png")}
-                style={styles.phoneImage}
-              />
-            </ThemedView>
-          </TouchableOpacity>
+          <ThemedText type="yourTimezone">you are available 8am-3pm</ThemedText>
         </ThemedView>
       </ThemedView>
     </SafeAreaView>
@@ -48,8 +48,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "center",
-    gap: 40,
+    gap: 20,
     height: "100%",
     width: "100%",
   },
@@ -67,12 +66,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  circleContainer: {
+  imageContainer: {
     width: 150,
-    height: 150,
+    height: 170,
     borderRadius: 70,
-    overflow: "hidden",
-    backgroundColor: "#f0f0f0",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   statusCircle: {
     width: 10,
@@ -80,20 +82,13 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "#00FF00",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-  },
-  phoneCircle: {
-    width: 60, // Size of the circle
-    height: 60, // Size of the circle
-    borderRadius: 60, // Half of width/height for a perfect circle
-    backgroundColor: "white", // Grey background
-    justifyContent: "center", // Center image horizontally
-    alignItems: "center", // Center image vertically
-
+  edit: {
+    margin: 20,
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    borderRadius: 80,
+    marginBottom: 5,
+    paddingHorizontal: 5,
     borderColor: "#DDDDDD",
     borderStyle: "solid",
     borderWidth: 0.5,
@@ -101,10 +96,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
-  },
-  phoneImage: {
-    width: 30, // Adjust size as needed
-    height: 30,
-    resizeMode: "contain", // Ensure image fits within the circle
   },
 });

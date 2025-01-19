@@ -1,4 +1,10 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  SafeAreaView,
+  ImageBackground,
+} from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -7,6 +13,12 @@ import { ThemedView } from "@/components/ThemedView";
 
 export default function HomeScreen() {
   return (
+    // <SafeAreaView>
+    //   <ImageBackground
+    //     source={require("@/assets/images/partial-react-logo.png")}
+    //     style={styles.imgBackground}
+    //   />
+    // </SafeAreaView>
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
@@ -59,6 +71,15 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  // container: {
+  //   backgroundImage: "require",
+  // },
+  imgBackground: {
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    backgroundColor: "red",
+  },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",

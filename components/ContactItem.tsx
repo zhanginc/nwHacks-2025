@@ -3,39 +3,24 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
-import { useNavigation, useRouter } from "expo-router";
-
-export type Contact = {
-  id: number;
-  name: string;
-  lastContacted: string;
-  status: "red" | "green" | "yellow";
-};
+import { Contact } from "@/app/utils/types";
 
 export type ContactItemProps = TextProps & {
   contact: Contact;
 };
 
-export function ContactItem({ contact }: ContactItemProps) {
-  const navigation = useNavigation();
-  const router = useRouter();
-
+export function ContactItem({ contact, onPress }: ContactItemProps) {
   return (
-    <TouchableOpacity
-    // onPress={() =>
-    //     navigation.navigate("contact/1")}
-    >
+    <TouchableOpacity onPress={onPress}>
       <ThemedView style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: "https://img.freepik.com/free-vector/vector-red-apple-food-sticker-clipart_53876-170575.jpg",
-          }}
-        />
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={contact.image} />
+        </View>
         <ThemedView style={styles.textContainer}>
           <ThemedText>{contact.name}</ThemedText>
           <ThemedText color="#B3B3B3">
@@ -51,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     marginVertical: 5,
-    borderRadius: 10,
+    borderRadius: 20,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -63,11 +48,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
   },
-  image: {
-    height: 50,
+  imageContainer: {
     width: 50,
-    margin: 10,
-    borderRadius: "100%",
+    height: 55,
+    marginHorizontal: 12,
+    marginVertical: 10,
+    borderRadius: 70,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   textContainer: {
     display: "flex",

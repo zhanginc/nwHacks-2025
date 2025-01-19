@@ -1,30 +1,29 @@
-import {
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { StyleSheet, SafeAreaView, ScrollView, Button } from "react-native";
 
-import { Contact, ContactItem } from "@/components/ContactItem";
+import { ContactItem } from "@/components/ContactItem";
 import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-
-const contacts: Contact[] = [
-  { id: 1, name: "Misha Reyes", lastContacted: "2 months", status: "red" },
-  { id: 2, name: "Erin Chong", lastContacted: "4 days", status: "green" },
-  { id: 3, name: "Grace Zhang", lastContacted: "1 year", status: "yellow" },
-];
+import { useRouter } from "expo-router";
+import { contacts } from "../data";
 
 export default function TabTwoScreen() {
+  const router = useRouter();
+
   return (
     <SafeAreaView>
       <ScrollView style={styles.scroll}>
         <ThemedView style={styles.add}>
-          <Button title="+" color="black"></Button>
+          <Button
+            title="+"
+            color="#8B8B8B"
+            onPress={() => router.push(`/add`)}
+          />
         </ThemedView>
         {contacts.map((contact, index) => (
-          <ContactItem key={index} contact={contact} />
+          <ContactItem
+            key={index}
+            contact={contact}
+            onPress={() => router.push(`/contact/${contact.id}`)}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
   add: {
     flexDirection: "row",
     alignSelf: "flex-end",
-    borderRadius: 10,
+    borderRadius: "100%",
     marginRight: 20,
     marginTop: 10,
     marginBottom: 5,

@@ -40,32 +40,37 @@ const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
+    fontFamily: "Figtree_400Regular",
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
     fontWeight: "600",
+    fontFamily: "Figtree_700Bold",
   },
   title: {
     fontSize: 32,
     fontWeight: "bold",
     lineHeight: 32,
+    fontFamily: "SpaceGrotesk_700Bold",
   },
   subtitle: {
     fontSize: 20,
     fontWeight: "bold",
+    fontFamily: "Figtree_600SemiBold",
   },
   yourTimezone: {
     fontSize: 15,
-    color: "#808080",
+    fontFamily: "Figtree_400Regular",
   },
   bodyText: {
     fontSize: 20,
-    color: "#808080",
+    fontFamily: "Figtree_400Regular",
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
     color: "#0a7ea4",
+    fontFamily: "Figtree_400Regular",
   },
 });
