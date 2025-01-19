@@ -3,12 +3,14 @@ import { Text, type TextProps, Image, StyleSheet } from "react-native";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
 
+export type Contact = {
+  name: string;
+  lastContacted: string;
+  status: "red" | "green" | "yellow";
+};
+
 export type ContactItemProps = TextProps & {
-  contact: {
-    name: string;
-    lastContacted: string;
-    status: string;
-  };
+  contact: Contact;
 };
 
 export function ContactItem({ contact }: ContactItemProps) {
@@ -20,7 +22,12 @@ export function ContactItem({ contact }: ContactItemProps) {
           uri: "https://img.freepik.com/free-vector/vector-red-apple-food-sticker-clipart_53876-170575.jpg",
         }}
       />
-      <ThemedText>{contact.name}</ThemedText>
+      <ThemedView style={styles.textContainer}>
+        <ThemedText>{contact.name}</ThemedText>
+        <ThemedText color="#B3B3B3">
+          last called {contact.lastContacted} ago
+        </ThemedText>
+      </ThemedView>
     </ThemedView>
   );
 }
@@ -32,11 +39,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
   },
   image: {
     height: 50,
     width: 50,
     margin: 10,
     borderRadius: "100%",
+  },
+  textContainer: {
+    display: "flex",
+    flexDirection: "column",
   },
 });

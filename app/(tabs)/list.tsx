@@ -1,12 +1,6 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, ScrollView } from "react-native";
 
-import { ContactItem } from "@/components/ContactItem";
-
-type Contact = {
-  name: string;
-  lastContacted: string;
-  status: "red" | "green" | "yellow"; // Limit status to specific strings
-};
+import { Contact, ContactItem } from "@/components/ContactItem";
 
 const contacts: Contact[] = [
   {
@@ -29,9 +23,11 @@ const contacts: Contact[] = [
 export default function TabTwoScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      {contacts.map((contact, index) => (
-        <ContactItem key={index} contact={contact} />
-      ))}
+      <ScrollView style={styles.scroll}>
+        {contacts.map((contact, index) => (
+          <ContactItem key={index} contact={contact} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -40,5 +36,8 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     gap: 5,
+  },
+  scroll: {
+    height: "100%",
   },
 });
