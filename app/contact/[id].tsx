@@ -13,7 +13,7 @@ import { useRouter } from "expo-router";
 import { useSearchParams } from "expo-router/build/hooks";
 import { contacts, profile } from "../data";
 import { useEffect, useState } from "react";
-import { callPhoneNumber, getCurrentTime } from "../utils/utils";
+import { callPhoneNumber, getCurrentTime } from "../../utils/utils";
 
 export default function ContactDetails() {
   const [currentTime, setCurrentTime] = useState("");
@@ -67,7 +67,7 @@ export default function ContactDetails() {
           <ThemedText type="bodyText">
             last called {contact.lastContacted} ago
           </ThemedText>
-          <TouchableOpacity onPress={() => callPhoneNumber("6046557173")}>
+          <TouchableOpacity onPress={() => callPhoneNumber(contact.phoneNum)}>
             <ThemedView style={styles.phoneCircle}>
               <Image
                 source={require("@/assets/images/phone.png")}

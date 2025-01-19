@@ -8,7 +8,7 @@ import {
 
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
-import { Contact } from "@/app/utils/types";
+import { Contact } from "@/utils/types";
 
 export type ContactItemProps = TextProps & {
   contact: Contact;

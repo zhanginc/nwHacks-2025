@@ -1,16 +1,10 @@
-import {
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { View, Image, StyleSheet, Button } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { profile } from "../data";
 import { useEffect, useState } from "react";
-import { getCurrentTime } from "../utils/utils";
+import { getCurrentTime } from "../../utils/utils";
 import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
@@ -38,7 +32,9 @@ export default function ProfileScreen() {
               {currentTime} {profile.timezone}
             </ThemedText>
           </ThemedView>
-          <ThemedText type="yourTimezone">you are available 8am-3pm</ThemedText>
+          <ThemedText type="yourTimezone">
+            you are available {profile.available}
+          </ThemedText>
         </ThemedView>
       </ThemedView>
     </SafeAreaView>

@@ -31,5 +31,3 @@ export const callPhoneNumber = (phoneNumber: string) => {
     })
     .catch((err) => console.error("An error occurred", err));
 };
-
-export default { getCurrentTime, callPhoneNumber };

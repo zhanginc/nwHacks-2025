@@ -1,4 +1,4 @@
-import { Contact } from "./utils/types";
+import { Contact } from "../utils/types";
 
 export const contacts: Contact[] = [
   {
@@ -8,6 +8,7 @@ export const contacts: Contact[] = [
     available: "5pm-11pm",
     image: require("@/assets/images/apples/red-1.png"),
     timezone: "PST",
+    phoneNum: "7788961587",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const contacts: Contact[] = [
     available: "6pm-12am",
     image: require("@/assets/images/apples/red-2.png"),
     timezone: "EST",
+    phoneNum: "4034670608",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const contacts: Contact[] = [
     available: "5pm-11pm",
     image: require("@/assets/images/apples/green-2.png"),
     timezone: "PST",
+    phoneNum: "6046557173",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const contacts: Contact[] = [
     available: "12pm-2pm",
     image: require("@/assets/images/apples/yellow-3.png"),
     timezone: "MST",
+    phoneNum: "6046557173",
   },
   {
     id: 5,
@@ -40,6 +44,16 @@ export const contacts: Contact[] = [
     available: "3pm-5pm",
     image: require("@/assets/images/apples/yellow-2.png"),
     timezone: "PST",
+    phoneNum: "7788961587",
+  },
+  {
+    id: 6,
+    name: "Alexa Partridge",
+    lastContacted: "1 week",
+    available: "12pm-10pm",
+    image: require("@/assets/images/apples/green-1.png"),
+    timezone: "EET",
+    phoneNum: "4034670608",
   },
 ];
 

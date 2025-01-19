@@ -6,6 +6,5 @@ export type Contact = {
   timezone: string;
   // status: "red" | "green" | "yellow";
   image: any;
+  phoneNum: string;
 };
-
-export default Contact;
