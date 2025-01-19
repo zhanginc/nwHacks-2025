@@ -2,7 +2,14 @@ import { Text, type TextProps, StyleSheet } from "react-native";
 
 export type ThemedTextProps = TextProps & {
   color?: string;
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  type?:
+    | "default"
+    | "title"
+    | "defaultSemiBold"
+    | "subtitle"
+    | "link"
+    | "yourTimezone"
+    | "bodyText";
 };
 
 export function ThemedText({
@@ -19,6 +26,8 @@ export function ThemedText({
         type === "title" ? styles.title : undefined,
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
+        type === "yourTimezone" ? styles.yourTimezone : undefined,
+        type === "bodyText" ? styles.bodyText : undefined,
         type === "link" ? styles.link : undefined,
         style,
       ]}
@@ -45,6 +54,14 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  yourTimezone: {
+    fontSize: 15,
+    color: "#808080",
+  },
+  bodyText: {
+    fontSize: 20,
+    color: "#808080",
   },
   link: {
     lineHeight: 30,
