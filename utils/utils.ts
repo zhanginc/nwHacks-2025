@@ -31,3 +31,9 @@ export const callPhoneNumber = (phoneNumber: string) => {
     })
     .catch((err) => console.error("An error occurred", err));
 };
+
+export const showAlert = () => {
+  Alert.alert("🍏🍎", "This feature isn’t quite ripe yet. Check back soon!", [
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+};

@@ -1,15 +1,14 @@
-import { View, Image, StyleSheet, Button } from "react-native";
+import { View, Image, StyleSheet, Button, Alert } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { profile } from "../data";
 import { useEffect, useState } from "react";
-import { getCurrentTime } from "../../utils/utils";
+import { getCurrentTime, showAlert } from "../../utils/utils";
 import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
   const [currentTime, setCurrentTime] = useState("");
-  const router = useRouter();
 
   useEffect(() => {
     setCurrentTime(getCurrentTime());
@@ -19,7 +18,7 @@ export default function ProfileScreen() {
     <SafeAreaView>
       <ThemedView style={styles.container}>
         <ThemedView style={styles.edit}>
-          <Button title="edit" color="#8B8B8B" onPress={() => {}} />
+          <Button title="edit" color="#8B8B8B" onPress={showAlert} />
         </ThemedView>
         <View style={styles.imageContainer}>
           <Image source={profile.image} style={styles.image} />

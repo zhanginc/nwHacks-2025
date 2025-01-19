@@ -13,7 +13,7 @@ import { useRouter } from "expo-router";
 import { useSearchParams } from "expo-router/build/hooks";
 import { contacts, profile } from "../data";
 import { useEffect, useState } from "react";
-import { callPhoneNumber, getCurrentTime } from "../../utils/utils";
+import { callPhoneNumber, getCurrentTime, showAlert } from "../../utils/utils";
 
 export default function ContactDetails() {
   const [currentTime, setCurrentTime] = useState("");
@@ -43,7 +43,7 @@ export default function ContactDetails() {
           <Button title="back" color="#8B8B8B" onPress={() => router.back()} />
         </ThemedView>
         <ThemedView style={styles.edit}>
-          <Button title="edit" color="#8B8B8B" onPress={() => {}} />
+          <Button title="edit" color="#8B8B8B" onPress={showAlert} />
         </ThemedView>
         <View style={styles.imageContainer}>
           <Image source={contact.image} style={styles.image} />
@@ -54,11 +54,13 @@ export default function ContactDetails() {
           <ThemedView style={styles.stepContainer}>
             <ThemedView style={styles.statusCircle}></ThemedView>
             <ThemedText type="subtitle">
-              {currentTime} {profile.timezone}
+              01:32 pm PST
+              {/* {currentTime} {profile.timezone} */}
             </ThemedText>
           </ThemedView>
           <ThemedText type="yourTimezone" color="#808080">
-            10:41 pm {contact.timezone}
+            04:32 pm EST
+            {/* 10:41 pm {contact.timezone} */}
           </ThemedText>
           <ThemedText type="yourTimezone">
             available {contact.available}
