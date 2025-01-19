@@ -1,99 +1,72 @@
 import {
   Image,
   StyleSheet,
-  Platform,
-  SafeAreaView,
-  ImageBackground,
+  Pressable,
 } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useRouter } from "expo-router";
+
+const overlayItems = [
+  {
+    id: 3,
+    source: require("@/assets/images/applesName/mishaIcon.png"),
+    position: { top: 150, right: 10 },
+  },
+  {
+    id: 2,
+    source: require("@/assets/images/applesName/graceIcon.png"),
+    position: { top: 70, left: 140 },
+  },
+  {
+    id: 1,
+    source: require("@/assets/images/applesName/billIcon.png"),
+    position: { bottom: 150, left: 20 },
+  },
+  {
+    id: 5,
+    source: require("@/assets/images/applesName/vonIcon.png"),
+    position: { bottom: 50, left: 140 },
+  },
+  {
+    id: 4,
+    source: require("@/assets/images/applesName/myahIcon.png"),
+    position: { top: 150, left: 10 },
+  },
+  {
+    id: 6,
+    source: require("@/assets/images/applesName/alexaIcon.png"),
+    position: { bottom: 150, right: 20 },
+  },
+];
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
-    // <SafeAreaView>
-    //   <ImageBackground
-    //     source={require("@/assets/images/partial-react-logo.png")}
-    //     style={styles.imgBackground}
-    //   />
-    // </SafeAreaView>
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{" "}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ThemedView>
+      <Image
+        source={require("@/assets/images/homeBackground.png")}
+        style={styles.image}
+      />
+      {overlayItems.map((item) => (
+        <Pressable
+          key={item.id}
+          onPress={() => router.push(`/contact/${item.id}`)}
+          style={[styles.overlayImage, item.position]}
+        >
+          <Image source={item.source} />
+        </Pressable>
+      ))}
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   backgroundImage: "require",
-  // },
-  imgBackground: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
-    backgroundColor: "red",
+  image: {
+    resizeMode: "cover",
+    justifyContent: "center",
   },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  overlayImage: {
     position: "absolute",
   },
 });
